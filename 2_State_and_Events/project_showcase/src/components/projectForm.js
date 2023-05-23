@@ -6,7 +6,7 @@ function ProjectForm(){
     return(
         <form className = "form" onSubmit={submit}>
             <label>Test1</label>
-            <input></input>
+            <input onChange ={()=>console.log("Changing")}></input>
             <label>Test2</label>
             <input></input>
             <button type="submit" onClick={()=>{console.log("Click")}}>Button</button>
