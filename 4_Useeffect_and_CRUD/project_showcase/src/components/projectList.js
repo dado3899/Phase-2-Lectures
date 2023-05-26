@@ -20,7 +20,7 @@ function ProjectList({projects, search, handleChange,setProjects}){
         console.log(removed)
         setProjects(removed)
     }
-    // console.log(projectsCards)
+    
     const filteredProjects = projects.filter((individualProject)=>{
         if(search === "all"){
             return true
