@@ -1,10 +1,18 @@
 import { useState } from "react";
+import {
+    BrowserRouter,
+    Routes,
+    Route,
+    Link,
+    useMatch
+  } from "react-router-dom";
 function ProjectForm({addToProject}){
+    let match = useMatch('/form/:id')
+    console.log(match)
     const [name,setName] = useState("")
     const [description, setDescription] = useState("")
     const [phase, setPhase] = useState("")
     // const [projObject,setProjObject] = useState({})
-
     function submit(e){
         e.preventDefault()
         console.log("In Submit")

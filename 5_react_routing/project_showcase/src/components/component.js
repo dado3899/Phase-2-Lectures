@@ -1,5 +1,4 @@
-function ComponentTest({testProp, hello}){
-    console.log(hello)
+function ComponentTest({}){
     return <div>component</div>
 }
 

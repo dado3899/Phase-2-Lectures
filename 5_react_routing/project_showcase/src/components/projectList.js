@@ -1,9 +1,18 @@
 import ProjectCard from "./projectCard"
 import { useState } from "react";
+import {
+    BrowserRouter,
+    Routes,
+    Route,
+    Link,
+    useMatch
+  } from "react-router-dom";
 
 function ProjectList({projects, search, handleChange,setProjects}){
     // const [search,setSearch] = useState("")
-    console.log(projects)
+    let match = useMatch('/')
+    console.log(match)
+    console.log("In PL")
     function handleDelete(id){
         fetch(`http://localhost:4000/projects/${id}`,{
         method:'DELETE'
