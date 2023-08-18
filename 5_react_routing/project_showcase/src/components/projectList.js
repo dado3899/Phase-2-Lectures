@@ -10,8 +10,7 @@ import {
 
 function ProjectList({projects, search, handleChange,setProjects}){
     // const [search,setSearch] = useState("")
-    let match = useMatch('/')
-    console.log(match)
+    
     console.log("In PL")
     function handleDelete(id){
         fetch(`http://localhost:4000/projects/${id}`,{
