@@ -1,11 +1,49 @@
+import projects from "./projects"
+import Component1 from "./components/component1"
+import Header from "./components/header"
+import ProjectCard from "./components/projectCard"
+import ProjectForm from "./components/projectForm"
+
 function App() {
-  // Lets create a basic react component and bring it in!
-  // Lets go ahead and create all the components mentioned starting
-  // with the header!
-  // Next the project form
-  // Now the project list, we'll pass the projects into it
-  return <div className="App">Project showcase</div>;
-}
+  // console.log(projects)
+  const header = "THIS IS A HEADER"
+  const componentParagraph = "Lets create a basic react component and bring it in!"
+
+  let phase = 4
+  const filteredProjects = projects.filter(project => project.phase === phase)
+
+  const projectList = filteredProjects.map((project)=> {
+    // console.log(project)
+    return <ProjectCard key={project.id} individualProject={project} function1={consoleLogsSomething}/>
+  })
+  console.log(projectList)
+
+  function consoleLogsSomething(something){
+    console.log(something)
+  }
+
+  function addToArray(newProject){
+    projects.push(newProject)
+    console.log(projects)
+  }
+
+  return(
+    <div className="App">
+      <button onClick = {()=>{
+        phase = 3
+        console.log(phase)
+        }
+      }>
+        change to 3
+      </button>
+      <Header/>
+      {projectList}
+      <ProjectForm addToArray={addToArray}/>
+      <Component1 componentParagraph = {componentParagraph} x = "hello" y = "Goodbye"/>
+      <div>Test showcase</div>
+    </div>
+  )
+} 
 
 export default App;
 
