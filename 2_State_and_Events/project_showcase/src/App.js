@@ -16,7 +16,7 @@ function App() {
   const newstring = "Header"
   const test = <ComponentTest hello = {"Hello"}/>
   const multiComp = [<NewComponent key={1}/>,<NewComponent key={2}/>,<NewComponent key={3}/>]
-
+  console.log(test.props.hello)
   // function bringToApp(newProject){
   //   console.log(newProject)
   //   const newArray = [...projectList,newProject]

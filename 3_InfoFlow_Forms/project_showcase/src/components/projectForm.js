@@ -1,14 +1,32 @@
 import { useState } from "react";
-function ProjectForm({}){
+function ProjectForm({postData}){
+    const [name,setName] = useState("")
+    const [description,setDescription] = useState("")
+    const [phase,setPhase] = useState("")
+    // console.log(name)
     //Create a state for each of these values
+    function submit(e){
+        e.preventDefault()
+        const newData = {
+            name: name,
+            about: description,
+            phase: phase
+        }
+        postData(newData)
+        e.target.name.value = ""
+        setName("")
+        setDescription("")
+        setPhase("")
+    }
+
     return(
-        <form className = "form">
+        <form className = "form" onSubmit={(e)=>submit(e)} >
             <label>Name</label>
-            <input onChange={(e)=>console.log(e.target.value)} value={""}></input>
+            <input onChange={(e)=>setName(e.target.value)} value={name}></input>
             <label>Description</label>
-            <input onChange={(e)=>console.log(e.target.value)} value={""}></input>
+            <input onChange={(e)=>setDescription(e.target.value)} value={description}></input>
             <label>Phase</label>
-            <input onChange={(e)=>console.log(e.target.value)} value={""}></input>
+            <input onChange={(e)=>setPhase(e.target.value)} value={phase}></input>
             <button type="submit">Button</button>
         </form>
     )
