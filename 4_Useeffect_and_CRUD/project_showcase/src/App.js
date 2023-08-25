@@ -14,7 +14,7 @@ function App() {
   return (
   <div className="App">
     <Header darkMode={darkMode} setDarkMode={setDarkMode}/>
-    <ProjectContainer/>
+    <ProjectContainer darkMode={darkMode}/>
   </div>
   );
 }

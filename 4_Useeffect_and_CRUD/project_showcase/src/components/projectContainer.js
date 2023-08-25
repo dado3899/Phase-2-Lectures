@@ -1,21 +1,81 @@
 import ProjectForm from "./projectForm"
 import ProjectList from "./projectList"
-import {useState} from "react"
-function ProjectContainer({}){
+import {useState, useEffect} from "react"
+function ProjectContainer({darkMode}){
     const [projects,setProjects] = useState([])
+    const [counter,setCounter] = useState(0)
 
-    function fetchData(){
-        fetch("http://localhost:4000/projects")
-        .then(r=>r.json())
-        .then(data=>setProjects(data))
-    }
+    let counterVar = 0
+    console.log("PAGE RELOADING")
     
+    useEffect(()=>{
+        fetch("http://localhost:3000/projects")
+        .then(r=>r.json())
+        .then(data=>setProjects(data)) 
+    },
+    [])
+
+    function postProject(newProj){
+        console.log(newProj)
+        fetch("http://localhost:3000/projects",
+        {
+            method: "POST",
+            headers:  {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(newProj)
+        })
+        .then(r=> r.json())
+        .then(data=>setProjects([...projects,data]))
+    }
+
+    function deleteProject(id){
+        fetch(`http://localhost:3000/projects/${id}`,
+        {
+            method: "DELETE",
+        })
+        .then(r=>r.json())
+        .then(data => {
+            const newProjList = projects.filter(
+                (project)=>{
+                    return project.id !== id
+                }
+            )
+            setProjects(newProjList)
+        })
+    }
+
+    function updateProject(updatedProject){
+        fetch(`http://localhost:3000/projects/${updatedProject.id}`,
+        {
+            method: "PATCH",
+            headers:  {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(updatedProject)
+        })
+        .then(r=> r.json())
+        .then(data=>{
+            const newProjArray = projects.map((project)=>{
+                if(project.id===data.id){
+                    return data
+                }
+                return project
+            })
+            console.log(projects)
+            console.log(newProjArray)
+            setProjects(newProjArray)
+        })
+    }
+    // useEffect(()=>{
+    //     console.log(counter)
+    // },[counter])
 
     return(
         <>
-            <button onClick={()=>fetchData()}>Fetch Data</button>
-            <ProjectForm/>
-            <ProjectList projects ={projects}/>
+            <button onClick={()=>setCounter(counter+1)}>Update Counter {counter}</button>
+            <ProjectForm postProject={postProject}/>
+            <ProjectList projects ={projects} deleteProject={deleteProject} updateProject={updateProject}/>
         </>
     )
 }

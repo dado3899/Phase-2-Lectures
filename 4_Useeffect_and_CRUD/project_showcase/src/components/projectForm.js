@@ -1,5 +1,5 @@
 import { useState } from "react";
-function ProjectForm({}){
+function ProjectForm({postProject}){
     const [name,setName] = useState("")
     const [description,setDescription] = useState("")
     const [phase,setPhase] = useState("")
@@ -12,8 +12,7 @@ function ProjectForm({}){
             about: description,
             phase: phase
         }
-        console.log(newData)
-        e.target.name.value = ""
+        postProject(newData)
         setName("")
         setDescription("")
         setPhase("")

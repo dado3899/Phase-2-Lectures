@@ -1,15 +1,15 @@
 import ProjectCard from "./projectCard"
 import { useState } from "react";
 
-function ProjectList({projects}){
+function ProjectList({projects,deleteProject,updateProject}){
     const [search, setSearch] = useState("")
-
+    // console.log(projects)
     const filteredProjects = projects.filter((project)=>{
         return project.name.toLowerCase().includes(search.toLowerCase())
     })
 
     const projectsCards = filteredProjects.map(individualProject=>{
-        return <ProjectCard key={individualProject.id} project={individualProject}/>
+        return <ProjectCard key={individualProject.id} project={individualProject} deleteProject={deleteProject} updateProject={updateProject}/>
     })
 
     // console.log(projectsCards)

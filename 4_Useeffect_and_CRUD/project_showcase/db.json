@@ -1,18 +1,10 @@
 {
   "projects": [
     {
-      "id": 1,
-      "name": "Great Guide",
-      "about": "Plan your next adventure to in the U.S. National Parks!",
-      "phase": 4,
-      "link": "https://great-outdoors-guide.netlify.app",
-      "image": "https://i.imgur.com/8GnP2Uw.png"
-    },
-    {
       "id": 3,
       "name": "Code Bucket",
-      "about": "Web-based CSS, JS and HTML Editor",
-      "phase": 4,
+      "about": "Web-based CSS, JS and HTML Editor does other things as well",
+      "phase": "2",
       "link": "https://code-bucket.netlify.app",
       "image": "https://i.imgur.com/Hz84TA2.png"
     },
@@ -80,27 +72,15 @@
     },
     {
       "name": "dsa",
-      "about": "",
-      "phase": "",
-      "id": 29
-    },
-    {
-      "name": "dsa",
       "about": "sda",
       "phase": "dsa",
       "id": 30
     },
     {
-      "name": "sdaads",
-      "about": "adss",
+      "name": "Proj 2",
+      "about": "Description",
       "phase": "1",
-      "id": 31
-    },
-    {
-      "name": "sdaads",
-      "about": "",
-      "phase": "",
-      "id": 32
+      "id": 33
     }
   ]
 }
