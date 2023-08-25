@@ -1,10 +1,15 @@
-function Header({mode,handleClick, fetchData}){
-    
+function Header({darkMode, setDarkMode}){
+    //Create a dark light mode using a state and classname Dark and Light
     return(
     <>
         <div>Header</div>
-        <button onClick={fetchData}>Get Data</button>
-        {mode?  <button className={"Dark"} onClick={handleClick}>Dark</button>:  <button className={"Light"} onClick={handleClick}>Light</button>}
+        {
+            darkMode?
+            <button className="Dark" onClick={()=>setDarkMode(!darkMode)}>Light Mode</button>
+            :
+            <button className="Light" onClick={()=>setDarkMode(!darkMode)}>Dark Mode</button>
+        }
+
     </>
     )
 }
