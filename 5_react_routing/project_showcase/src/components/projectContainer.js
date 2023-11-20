@@ -6,14 +6,14 @@ function ProjectContainer({darkMode}){
     const [counter,setCounter] = useState(0)
     
     let counterVar = 0
-    console.log("PAGE RELOADING")
-    
+
     useEffect(()=>{
+        console.log("in useeffect")
         fetch("http://localhost:3000/projects")
-        .then(r=>r.json())
-        .then(data=>setProjects(data)) 
-    },
-    [])
+        .then(r => r.json())
+        .then(data =>setProjects(data))
+    },[])
+    
 
     function postProject(newProj){
         console.log(newProj)

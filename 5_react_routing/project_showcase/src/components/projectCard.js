@@ -1,48 +1,71 @@
-import { useState } from "react";
-function ProjectCard({project, handleDelete,handleEdit}){
-    const {id,name,about, phase, link, image} = project
-    const [editMode, setEditMode] = useState(false)
-    const [newName,setNewName] = useState(name)
-    const [newAbout,setNewAbout] = useState(about)
-    const [newPhase,setNewPhase] = useState(phase)
-    // console.log(image)
-    
-    function editForm(e){
-        console.log("editing")
-        const editedItem = {
-            name: newName,
-            phase: newPhase,
-            about: newAbout
+import {useState,useEffect} from 'react'
+import {Link, useHistory} from "react-router-dom";
+
+function ProjectCard({project,deleteProject,updateProject}){
+    //Destructure the project
+    const history = useHistory()
+    // console.log(project)
+    const {id} = project
+    const [name,setName] = useState(project.name)
+    const [phase,setPhase] = useState(project.phase)
+    const [about,setAbout] = useState(project.about)
+    const [updateName, setUpdateName] = useState(false)
+    const [updatePhase, setUpdatePhase] = useState(false)
+    const [updateAbout, setUpdateAbout] = useState(false)
+    const [timer, setTimer] = useState(10)
+
+    useEffect(()=>{
+        const timeout = setTimeout(()=>{
+                setTimer(timer-1)
+            },1000)
+        return(
+            ()=>clearTimeout(timeout)
+        )
+    },[timer])
+    useEffect(()=>{
+        const updatedProjObj ={
+            id:id,
+            name:name,
+            phase:phase,
+            about:about
         }
-        setEditMode(!editMode)
-        handleEdit(id,editedItem)
-    }
+        updateProject(updatedProjObj)
+    },[name,phase,about])
+
+
 
     return(
-    <>
-    {editMode ?
-    <li className="card">
-        <form className = "form" onSubmit={editForm}>
-            <label>Name</label>
-            <input onChange={(e)=>setNewName(e.target.value)} value={newName}></input>
-            <label>Description</label>
-            <input onChange={(e)=>setNewAbout(e.target.value)} value={newAbout}></input>
-            <label>Phase</label>
-            <input onChange={(e)=>setNewPhase(e.target.value)} value={newPhase}></input>
-            <button type="submit">unEdit</button>
-        </form>
-    </li>
-    :
-    <li className="card">
-        <h3>{newName}</h3>
-        {phase ? <p>Phase: {newPhase}</p>:<p>Personal Project</p>}
-        {/* <img src={image}></img> */}
-        <p>{newAbout}</p>
-        <button onClick={()=>handleDelete(id)}>Delete</button>
-        <button onClick={()=>setEditMode(!editMode)}>Edit</button>
-    </li>
-    }
-    </>
-    )
+    <li className="card" onClick={()=>history.push(`/home/${id}`)}>
+        <h1>{timer}</h1>
+        {/* <Link to={`/home/${id}`}> Link To</Link> */}
+        {
+            updateName? 
+            <input 
+                onChange={(e)=>setName(e.target.value)}
+                onBlur={()=>setUpdateName(false)} value={name}>
+            </input>
+            :
+            <h3 onClick={()=>setUpdateName(true)}> {name}</h3>
+        }
+        {
+            updatePhase?
+            <input 
+                onChange={(e)=>setPhase(e.target.value)} 
+                onBlur={()=>setUpdatePhase(false)} value={phase}>
+            </input>
+            :
+            <h3 onClick={()=>setUpdatePhase(true)}> {phase}</h3>
+        }
+        {
+            updateAbout?
+            <input 
+                onChange={(e)=>setAbout(e.target.value)} 
+                onBlur={()=>setUpdateAbout(false)} value={about}>
+            </input>
+            :
+            <h3 onClick={()=>setUpdateAbout(true)}> {about}</h3>
+        }
+        <button onClick={()=>deleteProject(id)}>Delete</button>
+    </li>)
 }
 export default ProjectCard
