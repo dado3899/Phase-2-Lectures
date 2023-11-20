@@ -15,7 +15,7 @@
 
 - To install V5 run this command: `npm install react-router-dom@5.3.0` otherwise, V6 will install by default
 
-V5 vs V6:
+V5 vs V6.0-6.3:
 ```js
 // This is a React Router v5 app
 import {
