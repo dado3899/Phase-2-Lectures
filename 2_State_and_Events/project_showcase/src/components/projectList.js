@@ -1,8 +1,23 @@
 import ProjectCard from "./projectCard"
-function ProjectList({projects}){
-    const projectsCards = projects.map(individualProject=>{
-        return <ProjectCard key={individualProject.id} project={individualProject}/>
+import {useState} from 'react'
+function ProjectList({projectsArray,deleteProject}){
+    const [search,setSearch]= useState("")
+    // console.log(projectsArray)
+    const projListFiltered = projectsArray.filter((project)=>{
+        return project.name.toLowerCase().includes(search.toLowerCase())
     })
-    return <ul className = "cards">{projectsCards}</ul>
+
+    const projListComponent = projListFiltered.map((project)=>{
+        return <ProjectCard key={project.id} project={project} deleteProject={deleteProject}/>
+    })
+
+    return (
+        <>
+            <input onChange={(e)=>setSearch(e.target.value)}></input>
+            <ul className = "cards">
+                {projListComponent}
+            </ul>
+        </>
+    )
 }
 export default ProjectList
