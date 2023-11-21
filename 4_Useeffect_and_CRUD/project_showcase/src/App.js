@@ -9,22 +9,7 @@ function App() {
   const [search,setSearch] = useState("")
   const [mode, setMode] = useState(true)
   const [projects, setProjects] = useState([])
-  const newstring = "New String"
-  const test = <ComponentTest hello = {"Hello"}/>
 
-
-  function testUseEffect(){
-    console.log("Seperate Function")
-  }
-
-  useEffect(()=>{
-    fetch("http://localhost:4000/projects")
-    .then(r=>r.json())
-    .then(data=>setProjects(data))
-    }
-  ,[])
-
-  console.log(projects)
   function handleChange(searchValue){
     setSearch(searchValue)
     // search = e.target.value

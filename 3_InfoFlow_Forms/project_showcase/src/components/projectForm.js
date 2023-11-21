@@ -1,5 +1,5 @@
 import { useState } from "react";
-function ProjectForm({addToProject}){
+function ProjectForm({}){
     const [name,setName] = useState("")
     const [description, setDescription] = useState("")
     const [phase, setPhase] = useState("")
@@ -18,7 +18,6 @@ function ProjectForm({addToProject}){
         setName("")
         setPhase("")
         setDescription("")
-        addToProject(new_project)
     }
     return(
         <form className = "form" onSubmit={submit}>
