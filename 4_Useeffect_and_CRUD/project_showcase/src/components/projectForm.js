@@ -1,9 +1,19 @@
-import { useState } from "react";
-function ProjectForm({addToProject}){
+import { useEffect, useState } from "react";
+function ProjectForm({addToData}){
     const [name,setName] = useState("")
     const [description, setDescription] = useState("")
     const [phase, setPhase] = useState("")
+    const [valid,setValid] = useState(false)
     // const [projObject,setProjObject] = useState({})
+    useEffect(()=>{
+        console.log("In form useeffect")
+        if(name.length > 0 && description.length >10){
+            setValid(true)
+        }
+        else{
+            setValid(false)
+        }
+    },[name,description])
 
     function submit(e){
         e.preventDefault()
@@ -19,7 +29,7 @@ function ProjectForm({addToProject}){
         setName("")
         setPhase("")
         setDescription("")
-        addToProject(new_project)
+        addToData(new_project)
     }
     return(
         <form className = "form" onSubmit={submit}>
@@ -30,6 +40,7 @@ function ProjectForm({addToProject}){
             <label>Phase</label>
             <input onChange={(e)=>setPhase(e.target.value)} value={phase}></input>
             <button type="submit" onClick={submit}>Button</button>
+            <span>{valid?"valid inputs":"Input is wrong"}</span>
         </form>
     )
 }
