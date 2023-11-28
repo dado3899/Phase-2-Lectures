@@ -1,10 +1,15 @@
-function Header({mode,handleClick, fetchData}){
+function Header({setProjList}){
+    function fetchData(){
+        fetch('/projects')
+        .then(r=>r.json())
+        .then(data=>setProjList(data))
+    }
     
     return(
     <>
         <div>Header</div>
         <button onClick={fetchData}>Get Data</button>
-        {mode?  <button className={"Dark"} onClick={handleClick}>Dark</button>:  <button className={"Light"} onClick={handleClick}>Light</button>}
+        {/* <button className={"Dark"} onClick={handleClick}>Dark</button> */}
     </>
     )
 }

@@ -2,7 +2,7 @@
   "projects": [
     {
       "id": 1,
-      "name": "Great Guide",
+      "name": "Great",
       "about": "Plan your next adventure to in the U.S. National Parks!",
       "phase": 4,
       "link": "https://great-outdoors-guide.netlify.app",
@@ -10,7 +10,7 @@
     },
     {
       "id": 2,
-      "name": "Book Her",
+      "name": "Book Her s",
       "about": "The app takes you (the Casting Director) through a series of questions to determine the Models you need for your next Project.",
       "phase": 4,
       "link": "https://bookher.netlify.app/new_project",
@@ -57,14 +57,6 @@
       "image": "https://i.imgur.com/Y6mlORn.png"
     },
     {
-      "id": 22,
-      "name": "Breathe",
-      "about": "Meditation",
-      "phase": 3,
-      "link": "https://github.com/maifam/breathe_frontend",
-      "image": "https://i.imgur.com/hAuKx3K.png"
-    },
-    {
       "id": 23,
       "name": "HomeStory",
       "about": "A web app for storing info about furniture items you plan on purchasing in the future or simply just want to keep tabs of.",
@@ -73,9 +65,9 @@
       "image": "https://i.imgur.com/il8ft21.png"
     },
     {
-      "name": "test",
-      "about": "test",
-      "phase": "1",
+      "name": "Test",
+      "about": "This is a Test",
+      "phase": "0",
       "image": "",
       "link": "",
       "id": 24

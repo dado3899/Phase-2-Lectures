@@ -1,33 +1,40 @@
 import { useState } from "react";
-function ProjectForm({}){
+function ProjectForm({addProj}){
     const [name,setName] = useState("")
     const [description, setDescription] = useState("")
     const [phase, setPhase] = useState("")
-
+    const [checkbox, setCheckbox] = useState(false)
+    console.log(checkbox)
     function submit(e){
         e.preventDefault()
-        console.log("In Submit")
         const new_project = {
             name: name,
-            about:description,
+            about: description,
             phase: phase,
             image: "",
             link: ""
         }
-        console.log(new_project)
-        setName("")
-        setPhase("")
-        setDescription("")
+        addProj(new_project)
     }
     return(
         <form className = "form" onSubmit={submit}>
             <label>Name</label>
-            <input onChange={(e)=>setName(e.target.value)} value={name}></input>
+            <input name={"name"} value={name} onChange={(e)=>setName(e.target.value)}></input>
+            {name.length > 0 ? <></> : <div>Need input</div>}
             <label>Description</label>
-            <input onChange={(e)=>setDescription(e.target.value)} value={description}></input>
+            <input name={"about"} value={description} onChange={(e)=>setDescription(e.target.value)}></input>
             <label>Phase</label>
-            <input onChange={(e)=>setPhase(e.target.value)} value={phase}></input>
-            <button type="submit" onClick={submit}>Button</button>
+            <input name={"phase"} value={phase} onChange={(e)=>setPhase(e.target.value)}></input>
+            <input type={"checkbox"} onChange={(e)=>setCheckbox(!checkbox)}></input>
+            {checkbox? 
+            <>
+                <label>Checked Input</label>
+                <input></input>
+            </>
+            :
+            <></>
+            }
+            <button type="submit">Button</button>
         </form>
     )
 }
