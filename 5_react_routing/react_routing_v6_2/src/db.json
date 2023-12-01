@@ -1,0 +1,32 @@
+{
+    "users": [
+        {
+            "id": 1,
+            "name": "Bob",
+            "company": "Comp inc",
+            "reviews":[
+                "Great",
+                "love em"
+            ]
+        },
+        {
+            "id": 2,
+            "name": "Bob2",
+            "company": "Other inc",
+            "reviews":[
+                "Hate him",
+                "The worst"
+            ]
+        }
+    ],
+    "posts": [
+        {
+            "id": 1,
+            "post": "This is a post"
+        },
+        {
+            "id": 2,
+            "post": "This is another post"
+        }
+    ]
+}
