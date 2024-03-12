@@ -1,20 +1,19 @@
-import ComponentTest from "./components/component";
-import Header from "./components/header"
-import ProjectForm from "./components/projectForm";
-import ProjectList from "./components/projectList";
-import projects from "./projects";
+import Header from "./Header"
+import ProjectContainer from "./projects_componenets/ProjectContainer";
+import Test from "./components/test_component";
+import {useState} from 'react'
 
 function App() {
-  console.log(projects)
-  const newstring = "New String"
-  const test = <ComponentTest hello = {"Hello"}/>
-  return (
-  <div className="App">
-    <Header/>
-    <ProjectForm/>
-    <ProjectList projects ={projects}/>
-  </div>
-  );
+  const [mode, setMode] = useState("dark")
+
+  return(
+    <div className={`App ${mode}`}>
+      <Header name={"David"} name2={"Sam"} name3={"Jackson"} mode={mode} setMode={setMode}/>
+      <ProjectContainer/>
+      {/* <Test toDisplay={"Display THis"} consoleLog={"Hello World"}/> */}
+    </div>
+  )
 }
 
 export default App;
+
