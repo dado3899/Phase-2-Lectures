@@ -249,3 +249,16 @@ select:focus {
   border: 2px solid var(--blue-dark);
   color: var(--white);
 }
+
+
+.divRed{
+  color: #e80352;
+}
+.profileImage{
+  width: 50px;
+  height: 50px;
+}
+
+.projectImage{
+  height: 100vh;
+}

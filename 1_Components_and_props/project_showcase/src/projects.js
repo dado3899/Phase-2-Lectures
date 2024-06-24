@@ -1,7 +1,7 @@
 const projects = [
   {
     id: 1,
-    name: "Great Outdoors Guide",
+    name: "",
     about: "Plan your next adventure to in the U.S. National Parks!",
     phase: 4,
     link: "https://great-outdoors-guide.netlify.app",
