@@ -1,15 +1,34 @@
-function ProjectForm(){
+import Footer from "./footer"
+function ProjectForm({projects,setProjects}){
+    console.log("Form Rerendering")
     function submit(e){
         e.preventDefault()
-        console.log("In Submit")
+        const newProj={
+            name: e.target.name.value,
+            about: e.target.about.value,
+            phase: e.target.phase.value
+        }
+
+        const newArr = [...projects,newProj]
+        
+        setProjects(newArr)
+        // console.log(projects)
+        // Add a project to the end of the state
     }
+    // name: "Locksley To Do",
+    // about: "A todo list and calendar app",
+    // phase: 4,
+    // link: "https://www.locksleyr.com",
+    // image: "https://i.imgur.com/XOnaclL.png",
     return(
-        <form className = "form" onSubmit={submit}>
-            <label>Test1</label>
-            <input></input>
-            <label>Test2</label>
-            <input></input>
-            <button type="submit" onClick={()=>{console.log("Click")}}>Button</button>
+        <form className = "form" onSubmit={(e)=>submit(e)}>
+            <label>Name</label>
+            <input name="name"/>
+            <label>About</label>
+            <input name="about"/>
+            <label>Phase</label>
+            <input name="phase"/>
+            <button type="submit">Submit</button>
         </form>
     )
 }
