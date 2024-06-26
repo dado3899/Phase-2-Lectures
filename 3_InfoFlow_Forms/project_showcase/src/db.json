@@ -2,9 +2,9 @@
   "projects": [
     {
       "id": 1,
-      "name": "Great Guide",
-      "about": "Plan your next adventure to in the U.S. National Parks!",
-      "phase": 4,
+      "name": "National Parks",
+      "about": "Plan an adventure to in the U.S. National Parks!",
+      "phase": "10",
       "link": "https://great-outdoors-guide.netlify.app",
       "image": "https://i.imgur.com/8GnP2Uw.png"
     },
@@ -65,20 +65,10 @@
       "image": "https://i.imgur.com/hAuKx3K.png"
     },
     {
-      "id": 23,
-      "name": "HomeStory",
-      "about": "A web app for storing info about furniture items you plan on purchasing in the future or simply just want to keep tabs of.",
-      "phase": 3,
-      "link": "https://homestory.netlify.app",
-      "image": "https://i.imgur.com/il8ft21.png"
-    },
-    {
-      "name": "test",
-      "about": "test",
-      "phase": "1",
-      "image": "",
-      "link": "",
-      "id": 24
+      "name": "Test",
+      "about": "This is a Test",
+      "phase": "0",
+      "id": 23
     }
   ]
 }
