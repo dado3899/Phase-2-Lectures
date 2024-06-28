@@ -1,48 +1,36 @@
-import { useState } from "react";
+import {useState, useEffect} from 'react'
 function ProjectCard({project, handleDelete,handleEdit}){
-    const {id,name,about, phase, link, image} = project
-    const [editMode, setEditMode] = useState(false)
-    const [newName,setNewName] = useState(name)
-    const [newAbout,setNewAbout] = useState(about)
-    const [newPhase,setNewPhase] = useState(phase)
-    // console.log(image)
-    
-    function editForm(e){
-        console.log("editing")
-        const editedItem = {
-            name: newName,
-            phase: newPhase,
-            about: newAbout
+    const {id,about,phase} = project
+    const [toggleEdit,setToggleEdit] = useState(false)
+    const [name,setName] = useState(project.name)
+    // does project.name exists? if so name = project.name
+    function handleSubmit(e){
+        e.preventDefault()
+        handleEdit(id,name)
+        setToggleEdit(false)
+    }
+    useEffect(()=>{
+        console.log("Rendering this card: ", id)
+        return ()=> {
+            console.log("Unrendering this card: ", id)
         }
-        setEditMode(!editMode)
-        handleEdit(id,editedItem)
-    }
-
+    },[])
+    
+    
     return(
-    <>
-    {editMode ?
     <li className="card">
-        <form className = "form" onSubmit={editForm}>
-            <label>Name</label>
-            <input onChange={(e)=>setNewName(e.target.value)} value={newName}></input>
-            <label>Description</label>
-            <input onChange={(e)=>setNewAbout(e.target.value)} value={newAbout}></input>
-            <label>Phase</label>
-            <input onChange={(e)=>setNewPhase(e.target.value)} value={newPhase}></input>
-            <button type="submit">unEdit</button>
-        </form>
-    </li>
-    :
-    <li className="card">
-        <h3>{newName}</h3>
-        {phase ? <p>Phase: {newPhase}</p>:<p>Personal Project</p>}
-        {/* <img src={image}></img> */}
-        <p>{newAbout}</p>
-        <button onClick={()=>handleDelete(id)}>Delete</button>
-        <button onClick={()=>setEditMode(!editMode)}>Edit</button>
-    </li>
-    }
-    </>
-    )
+        {
+            toggleEdit? 
+            <form onSubmit={(e)=>handleSubmit(e)}>
+                <input value={name} onChange={(e)=>setName(e.target.value)}/> 
+            </form> :
+            <h3 onClick={()=>setToggleEdit(true)}>{name}</h3>
+        
+        }
+        {phase ? <p>Phase: {phase }</p>:<p>Personal Project</p>}
+        
+        <p>{about}</p>
+        <button onClick={()=>handleDelete(id)}>Delete Me</button>
+    </li>)
 }
 export default ProjectCard

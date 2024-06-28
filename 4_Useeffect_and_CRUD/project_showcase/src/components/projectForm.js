@@ -1,35 +1,36 @@
-import { useState } from "react";
-function ProjectForm({addToProject}){
+import Footer from "./footer"
+import {useState} from "react"
+
+function ProjectForm({handleSubmit}){
     const [name,setName] = useState("")
-    const [description, setDescription] = useState("")
-    const [phase, setPhase] = useState("")
-    // const [projObject,setProjObject] = useState({})
+    const [about,setAbout] = useState("")
+    const [phase,setPhase] = useState("")
 
     function submit(e){
         e.preventDefault()
-        console.log("In Submit")
-        const new_project = {
+        const newProj={
             name: name,
-            about:description,
-            phase: phase,
-            image: "",
-            link: ""
+            about: about,
+            phase: phase
         }
-        console.log(new_project)
-        setName("")
-        setPhase("")
-        setDescription("")
-        addToProject(new_project)
+        handleSubmit(newProj)
+        // Add a project to the end of the state
     }
+    // name: "Locksley To Do",
+    // about: "A todo list and calendar app",
+    // phase: 4,
+    // link: "https://www.locksleyr.com",
+    // image: "https://i.imgur.com/XOnaclL.png",
     return(
-        <form className = "form" onSubmit={submit}>
-            <label>Name</label>
-            <input onChange={(e)=>setName(e.target.value)} value={name}></input>
-            <label>Description</label>
-            <input onChange={(e)=>setDescription(e.target.value)} value={description}></input>
+        <form className = "form" onSubmit={(e)=>submit(e)}>
+            <label className={name.length<3?"redText":""}>Name</label>
+            <input name="name" value={name} onChange={(e)=>setName(e.target.value)}/>
+            <label>About</label>
+            <input name="about" value={about} onChange={(e)=>setAbout(e.target.value)}/>
+            { about.length< 10 ? <label>NOT LONG ENOUGH</label>:<></>}
             <label>Phase</label>
-            <input onChange={(e)=>setPhase(e.target.value)} value={phase}></input>
-            <button type="submit" onClick={submit}>Button</button>
+            <input name="phase" value={phase} onChange={(e)=>setPhase(e.target.value)}/>
+            <button type="submit">Submit</button>
         </form>
     )
 }
