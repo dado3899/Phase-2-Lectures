@@ -1,0 +1,29 @@
+{
+    "users":[
+        {
+            "id": 1,
+            "username": "David"
+        },
+        {
+            "id": 2,
+            "username": "Bob"
+        }
+    ],
+    "posts":[
+        {
+            "id":1,
+            "title":"Test",
+            "content": "This is a test"
+        },
+        {
+            "id":2,
+            "title":"Test2",
+            "content": "This is a test2"
+        },
+        {
+            "id":3,
+            "title":"Test3",
+            "content": "This is a test3"
+        }
+    ]
+}

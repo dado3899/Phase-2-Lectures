@@ -7,6 +7,7 @@ import {
 import User from './components/User';
 
 function App() {
+
   const router = createBrowserRouter([
     {
       path: "/",
@@ -21,6 +22,7 @@ function App() {
       element: <User/>
     }
   ]);
+
   return (
     <>
       <div>Header</div>

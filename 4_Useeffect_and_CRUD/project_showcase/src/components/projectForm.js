@@ -38,3 +38,14 @@ function ProjectForm({handleSubmit}){
 // Create a form (class form)
 // Label/input combo for the inputs
 export default ProjectForm
+
+
+
+
+
+
+// function addTwo(a,b){
+//     return a+b
+// }
+
+// addTwo(1,2)
