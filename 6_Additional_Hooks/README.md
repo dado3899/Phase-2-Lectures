@@ -6,122 +6,74 @@
 - [ ] useRef
 - [ ] External CSS
 
-### Inverse Data Flow
+### UseRef
 
-In React, we only have one way to share information between multiple components:
-`props`. We've seen how to use props to send data from a parent component to a child component, like this:
+What if we want to have a variable that perpetuates throughout rerenders without triggering a rerender ourself? This is where `useRef` comes in!
 
 ```js
-function Parent() {
-  const [search, setSearch] = useState("");
+import React, { useRef } from "react";
 
-  // passing search down as a prop
-  return <Child search={search} />;
-}
+function CounterRef() {
+  const count = useRef(0);
 
-function Child({ search }) {
+  function handleClick() {
+    count.current = count.current + 1;
+    console.log(count.current);
+  }
+
   return (
     <div>
-      <p>You searched for: {search}</p>
+      <h1>CounterRef</h1>
+      <button onClick={handleClick}>{count.current}</button>
     </div>
   );
 }
 ```
 
-It's also helpful to be able to pass data **up** from a child to a parent. In
-React, the only way to achieve this is by sending a **callback function** down
-from the parent to the child via `props`, and **call** that callback function in
-the child to send up data that we need.
+This way we can update and `perpetuate` a variable without causing a rerender!
 
-First, we need to define a callback function in the parent component:
+### UseContext
 
+So lets say we have a component 5 levels down a tree that needs access to a state created at the app level. Normally we could just pass the state down and that is a process called prop drilling, if we want to avoid that thats where `useContext` comes in
 ```js
-function Parent() {
-  const [search, setSearch] = useState("");
-
-  function handleSearchChange(newValue) {
-    // do whatever we want with the data (usually setting state)
-    setSearch(newValue);
-  }
-
-  return <Child search={search} />;
-}
-```
-
-Then, we need to pass a **reference** to the function down as a **prop** to the
-child component:
-
-```js
-function Parent() {
-  const [search, setSearch] = useState("");
-
-  function handleSearchChange(newValue) {
-    setSearch(newValue);
-  }
-
-  // pass down a reference to the function as a prop
-  return <Child search={search} onSearchChange={handleSearchChange} />;
-}
-```
-
-In our child component, we'll be able to call the callback function with
-whatever data we want to send up to the parent:
-
-```js
-function Child({ search, onSearchChange }) {
+import React, { useState } from "react";
+export default const UserContext = React.createContext(undefined)
+ 
+const App = () => {
+  //using the state to dynamicallly pass the values to the context
+ 
+  const [user, setUsers] = useState(false);
   return (
-    <div>
-      <p>You searched for: {search}</p>
+    <UserContext.Provider value={user}>
+      <Auth />
+    </UserContext.Provider>
+  );
+};
+export default App;
+```
 
-      {/* call onSearchChange and pass up some data */}
-      <input type="text" onChange={(e) => onSearchChange(e.target.value)} />
-    </div>
+and now from any prop we can bring this in by calling this:
+
+```js
+function Component5() {
+  const user = useContext(UserContext);
+
+  return (
+    <>
+      <h1>Component 5</h1>
+      <h2>{`Hello ${user.name}!`}</h2>
+    </>
   );
 }
 ```
-### Process: Using Inverse Data Flow
 
-1. Define a callback function in the parent component
-2. Pass the callback function as a prop to the child
-3. Call the callback in the event handler with whatever data we're sending up
-4. Define a event handler in the child component
+### Other CSS Frameworks
 
-### Lifting State
-
-- [Lifting State Up](https://reactjs.org/docs/lifting-state-up.html)
-
-- Often, several components need to reflect the same changing data. We recommend lifting the shared state up to their closest common ancestor. This helps to avoid complex or unesscary managing of state.
-- If two sibling components need access to the same `state`, you will want to place the shared `state` in a parent container. Then you can pass down that `state` as well as any functions that need to modify the state as props to the two sibling components that need to display and/or change that data.
-
-
-## Deliverables
-
-#### 1. Add a button to our App that will use json-server to fetch projects and store them in state
-
-- Add a button 'Load Projects' to the JSX of the `App` component
-
-- Add a 'click' event to the button
-
-- When the button is clicked, make a fetch request to "http://localhost:4000/projects" and set the `projects` state to the value returned by the response (Use  json-server --watch db.json --port 4000)
-
-#### 2. Use Inverse Data flow to implement Light-Dark mode
-
-- Refactor isDarkMode state from the `Header` component to the `App` component.
-
-- Create a callback function that updates `isDarkMode` and pass the callback function as a prop to the `Header` component
-
-- Inside the `Header` component, invoke the callback function in place of updating the state
-
-#### 3. Refactor the filter component out of `ProjectList` and implement inverse data flow
-
-- Refactor the `searchQuery` state and the filter method inside of the `ProjectList` component to the `App` component
-
-- Using inverse data flow, get the value of the input field UP to the App component
-
-- Write a callback function inside the App component:
-
-  - the function should take in a new search value and set state with that value
-
-  - pass the callback function down as a prop to `ProjectList`
-
-- Call the callback function from the onChange event listener
+- Bootstrap
+- Tailwind
+- Foundation
+- Bulma
+- Skeleton
+- Material UI
+- Semantic UI
+- Sass
